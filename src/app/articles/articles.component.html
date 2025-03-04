@@ -1,9 +1,15 @@
 <div class="container">
   <h2>Articles</h2>
   <div class="mb-3">
-    <label for="limit" class="form-label">Number of Articles:</label>
-    <input id="limit" type="number" class="form-control" [(ngModel)]="limit" />
-    <button class="btn btn-primary mt-2" (click)="applyFilter()">Filter</button>
+    <div class="row">
+      <div class="col-6">
+        <label for="limit" class="form-label">Number of Articles:</label>
+         <input id="limit" type="number" class="form-control" [(ngModel)]="limit" />
+      </div>
+      <div class="col-6">
+        <button class="btn btn-primary mt-4" (click)="applyFilter()">Filter</button>
+      </div>
+    </div>
   </div>
   <ul class="list-group">
     <li class="list-group-item" *ngFor="let article of articles">

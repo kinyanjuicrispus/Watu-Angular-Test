@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { SpaceflightNewsService } from '../spaceflight-news.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-reports',
   templateUrl: './reports.component.html',
+  imports: [FormsModule, CommonModule],
   styleUrls: ['./reports.component.css'],
-  standalone: false, 
+  standalone: true,
 })
 export class ReportsComponent implements OnInit {
   reports: any[] = [];
@@ -18,7 +21,7 @@ export class ReportsComponent implements OnInit {
   }
 
   loadReports(): void {
-    this.newsService.getArticles(this.limit).subscribe((data: any) => {
+    this.newsService.getReports(this.limit).subscribe((data: any) => {
       this.reports = data.results;
     });
   }

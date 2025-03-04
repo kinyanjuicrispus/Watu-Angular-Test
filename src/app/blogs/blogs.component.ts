@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { SpaceflightNewsService } from '../spaceflight-news.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-blogs',
   templateUrl: './blogs.component.html',
+  imports: [FormsModule, CommonModule],
   styleUrls: ['./blogs.component.css'],
-  standalone: false, 
+  standalone: true,
 })
 export class BlogsComponent implements OnInit {
   blogs: any[] = [];
