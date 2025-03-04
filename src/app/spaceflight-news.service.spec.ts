@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing'; 
+import { provideHttpClient } from '@angular/common/http'; 
 import { SpaceflightNewsService } from './spaceflight-news.service';
 
 describe('SpaceflightNewsService', () => {
@@ -8,49 +9,54 @@ describe('SpaceflightNewsService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [SpaceflightNewsService],
+      providers: [
+        SpaceflightNewsService,
+        provideHttpClient(),
+        provideHttpClientTesting(), 
+      ],
     });
+
     service = TestBed.inject(SpaceflightNewsService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
-    httpMock.verify();
+    httpMock.verify(); // Verify that no unmatched requests are outstanding
   });
 
   it('should fetch articles', () => {
     const mockArticles = [{ title: 'Test Article', summary: 'Test Summary' }];
 
     service.getArticles().subscribe((articles) => {
-      expect(articles.results).toEqual(mockArticles);
+      expect(articles.results).toEqual(mockArticles); 
     });
 
     const req = httpMock.expectOne('https://api.spaceflightnewsapi.net/v4/articles/?limit=10');
-    expect(req.request.method).toBe('GET');
-    req.flush({ results: mockArticles });
+    expect(req.request.method).toBe('GET'); 
+    req.flush({ results: mockArticles }); 
   });
 
   it('should fetch blogs', () => {
     const mockBlogs = [{ title: 'Test Blog', summary: 'Test Summary' }];
 
     service.getBlogs().subscribe((blogs) => {
-      expect(blogs.results).toEqual(mockBlogs);
+      expect(blogs.results).toEqual(mockBlogs); 
     });
 
     const req = httpMock.expectOne('https://api.spaceflightnewsapi.net/v4/blogs/?limit=10');
-    expect(req.request.method).toBe('GET');
-    req.flush({ results: mockBlogs });
+    expect(req.request.method).toBe('GET'); 
+    req.flush({ results: mockBlogs }); 
   });
 
   it('should fetch reports', () => {
     const mockReports = [{ title: 'Test Report', summary: 'Test Summary' }];
 
     service.getReports().subscribe((reports) => {
-      expect(reports.results).toEqual(mockReports);
+      expect(reports.results).toEqual(mockReports); 
     });
 
     const req = httpMock.expectOne('https://api.spaceflightnewsapi.net/v4/reports/?limit=10');
-    expect(req.request.method).toBe('GET');
-    req.flush({ results: mockReports });
+    expect(req.request.method).toBe('GET'); 
+    req.flush({ results: mockReports }); 
   });
 });

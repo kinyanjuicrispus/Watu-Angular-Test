@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class SpaceflightNewsService {
   private readonly API_URL = 'https://api.spaceflightnewsapi.net/v4';
 
-  constructor(private http: HttpClient) {} // ✅ Inject HttpClient directly
+  constructor(private http: HttpClient) {} 
 
   private fetchData(endpoint: string, limit: number): Observable<any> {
     return this.http.get(`${this.API_URL}/${endpoint}/?limit=${limit}`);

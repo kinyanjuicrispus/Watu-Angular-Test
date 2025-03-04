@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlogsComponent } from './blogs.component';
 import { SpaceflightNewsService } from '../spaceflight-news.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('BlogsComponent', () => {
   let component: BlogsComponent;
@@ -9,9 +9,8 @@ describe('BlogsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [BlogsComponent],
-      imports: [HttpClientTestingModule],
-      providers: [SpaceflightNewsService],
+      imports: [], // No need for HttpClientTestingModule
+      providers: [SpaceflightNewsService, provideHttpClient()], 
     }).compileComponents();
 
     fixture = TestBed.createComponent(BlogsComponent);
