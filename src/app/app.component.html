@@ -1,0 +1,9 @@
+<nav class="nav nav-tabs">
+  <a class="nav-link" [class.active]="activeTab === 'articles'" (click)="onTabChange('articles')">Articles</a>
+  <a class="nav-link" [class.active]="activeTab === 'blogs'" (click)="onTabChange('blogs')">Blogs</a>
+  <a class="nav-link" [class.active]="activeTab === 'reports'" (click)="onTabChange('reports')">Reports</a>
+</nav>
+
+<div class="mt-3">
+  <router-outlet></router-outlet>
+</div>
